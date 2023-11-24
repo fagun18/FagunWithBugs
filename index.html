@@ -168,6 +168,18 @@
   }
 </style>
 
+<style>
+  .home-scroll-button {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    color: black; /* Initial text color */
+  }
+
+  .home-scroll-button:hover {
+    transform: scale(1.1);
+    color: blue; /* Text color on hover */
+  }
+</style>
+
 <div class="home-scroll">
   <button onclick="redirectToAboutPage()" class="home-scroll-button button-flex">
     <!-- <i class="fa-solid fa-computer-mouse home-scroll-mouse"></i> -->
@@ -180,9 +192,10 @@
 <script>
   function redirectToAboutPage() {
     // Replace 'about.html' with the actual path to your about page
-    window.location.href = 'about.html';
+    window.location.href = 'sqa_roadmap.html';
   }
 </script>
+
 
 
       </div>
