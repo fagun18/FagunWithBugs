@@ -157,6 +157,17 @@
             </a>
           </div>
         </div>
+
+        <style>
+  .home-scroll-button {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .home-scroll-button:hover {
+    transform: scale(1.1);
+  }
+</style>
+
 <div class="home-scroll">
   <button onclick="redirectToAboutPage()" class="home-scroll-button button-flex">
     <!-- <i class="fa-solid fa-computer-mouse home-scroll-mouse"></i> -->
@@ -169,9 +180,10 @@
 <script>
   function redirectToAboutPage() {
     // Replace 'about.html' with the actual path to your about page
-    window.location.href = 'sqa_roadmap.html';
+    window.location.href = 'about.html';
   }
 </script>
+
 
       </div>
     </section>
