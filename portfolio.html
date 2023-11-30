@@ -178,6 +178,13 @@
         .slick-slide {
             transition: transform 0.3s ease-in-out;
         }
+	    .header-link {
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit the color from the parent */
+    display: flex; /* Make the link a flex container to align its children */
+    align-items: center; /* Align children vertically */
+}
+
 
         .slick-prev, .slick-next {
             font-size: 20px;
@@ -228,8 +235,16 @@
 <body>
     <!-- Header Section -->
     <header>
+            <a href="https://fagun18.github.io/FagunWithBugs/" class="header-link">
         <div class="logo"></div>
         <h1 class="page-title">Mejbaur Bahar Fagun Portfolio</h1>
+    </a>
+    <nav>
+        <a href="https://fagun18.github.io/FagunWithBugs/#home" class="nav-button">Home</a>
+        <button id="projectsBtn" class="nav-button">Projects</button>
+        <button id="blogsBtn" class="nav-button">Blogs</button>
+        <button id="certificatesBtn" class="nav-button">Certificates</button>
+    </nav>
         <!-- New button -->
         <nav>
             <a href="https://fagun18.github.io/FagunWithBugs/#home" class="nav-button">Home</a>
