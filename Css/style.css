@@ -706,6 +706,40 @@ body.dark-theme .qualification-logo { }
   font-size: var(--small-font-size);
 }
 
+/* Modernize Work section cards */
+.qualification-content[id="work"] .qualification-data {
+  border-radius: 14px;
+  background:
+    linear-gradient(var(--container-color), var(--container-color)) padding-box,
+    linear-gradient(135deg, #5B0888, #9D4EDD) border-box;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.qualification-content[id="work"] .qualification-data:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+.qualification-content[id="work"] .qualification-title {
+  font-size: calc(var(--h3-font-size) + 1px);
+  color: var(--title-color);
+}
+
+.qualification-content[id="work"] .qualification-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(91, 8, 136, 0.08);
+  color: var(--first-color);
+}
+
+.qualification-content[id="work"] .qualification-description {
+  line-height: 1.6;
+}
+
 /* Alternate side spacing when three-column grid is used */
 @media screen and (min-width: 568px) {
   .qualification-data { padding: 1.25rem 1.25rem; }

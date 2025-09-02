@@ -281,6 +281,6 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
     c.style.transform = 'translateY(18px)';
     c.style.opacity = '0';
     c.style.willChange = 'transform, opacity';
-    setTimeout(() => io.observe(c), idx * 60);
+    setTimeout(() => io.observe(c), idx * 90);
   });
 })();
