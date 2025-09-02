@@ -636,6 +636,24 @@ body.dark-theme .skills-name {
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
+/* Colorful animated border for qualification cards */
+.qualification-data {
+  background:
+    linear-gradient(var(--container-color), var(--container-color)) padding-box,
+    linear-gradient(135deg, #5B0888, #9D4EDD, #5B0888) border-box;
+  border: 1px solid transparent;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(91,8,136,0.25); }
+  70% { box-shadow: 0 0 0 8px rgba(91,8,136,0); }
+  100% { box-shadow: 0 0 0 0 rgba(91,8,136,0); }
+}
+
+.qualification-data:hover {
+  animation: pulseGlow 1.8s ease-out;
+}
+
 .qualification-data .qualification-round {
   position: absolute;
   left: -12px;
@@ -653,7 +671,23 @@ body.dark-theme .skills-name {
   top: 40px;
   width: 2px;
   height: calc(100% - 40px);
-  background: linear-gradient(180deg, var(--first-color) 0%, rgba(91,8,136,0.2) 100%);
+  background: linear-gradient(180deg, #9D4EDD 0%, rgba(91,8,136,0.2) 100%);
+}
+
+/* Animated gradient accent to the left of active tab */
+.qualification-button.qualification-active {
+  position: relative;
+}
+.qualification-button.qualification-active::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #5B0888 0%, #9D4EDD 100%);
 }
 
 .qualification-title { margin-bottom: 0.25rem; }

@@ -259,3 +259,28 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
 
   window.addEventListener("scroll", onScroll, { passive: true });
 })();
+
+// Qualification: animate cards on reveal
+(function initQualificationReveal() {
+  const container = document.querySelector('.qualification-section');
+  if (!container) return;
+  const cards = Array.from(container.querySelectorAll('.qualification-data'));
+  if (cards.length === 0) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+        entry.target.style.transform = 'translateY(0)';
+        entry.target.style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach((c, idx) => {
+    c.style.transform = 'translateY(18px)';
+    c.style.opacity = '0';
+    c.style.willChange = 'transform, opacity';
+    setTimeout(() => io.observe(c), idx * 60);
+  });
+})();
