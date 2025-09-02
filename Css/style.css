@@ -597,43 +597,46 @@ body.dark-theme .skills-name {
   color: #5b0888;
 }
 
-/* Modern Qualification timeline/cards */
-.qualification-container {
-  margin-top: 1rem;
-}
+/* Qualification (Mukesh-style) */
+.qualification-container { margin-top: 1rem; }
 
 .qualification-tabs {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.75rem;
   background: var(--container-color);
   border: 1px solid rgba(0,0,0,0.06);
   border-radius: 12px;
   padding: 0.5rem;
-  gap: 0.5rem;
 }
 
 .qualification-button {
+  font-size: var(--h3-font-size);
+  font-weight: var(--font-medium);
+  cursor: pointer;
   padding: 0.6rem 1rem;
   border-radius: 10px;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .qualification-button.qualification-active {
-  background: rgba(91, 8, 136, 0.08);
-  color: var(--first-color);
+  color: #fff;
+  background: var(--first-color);
 }
 
-.qualification-section {
-  position: relative;
-  margin-top: 1.25rem;
-}
+.qualification-section { position: relative; margin-top: 1.25rem; }
 
-.qualification-data {
+.qualification-content .qualification-data {
   position: relative;
-  background: var(--container-color);
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 12px;
-  padding: 1rem 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0.5rem 0.25rem 1.25rem;
+  margin-bottom: 0.25rem;
+  box-shadow: none;
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  column-gap: 1.5rem;
 }
 
 /* Colorful animated border for qualification cards */
@@ -697,14 +700,11 @@ body.dark-theme .qualification-logo { }
   background: linear-gradient(180deg, #5B0888 0%, #9D4EDD 100%);
 }
 
-.qualification-title { margin-bottom: 0.25rem; }
-.qualification-subtitle { color: var(--text-color); }
-.qualification-date { color: var(--text-color-light); margin-top: 0.25rem; }
+.qualification-title { font-size: var(--normal-font-size); margin-bottom: 0.25rem; }
+.qualification-subtitle { display: inline-block; font-size: var(--small-font-size); color: var(--text-color); margin-bottom: 0.5rem; }
+.qualification-date { font-size: var(--smaller-font-size); color: var(--text-color-light); margin-top: 0.25rem; }
 
-.qualification-description {
-  margin-top: 0.5rem;
-  font-size: var(--small-font-size);
-}
+.qualification-description { margin-top: 0.5rem; font-size: var(--small-font-size); }
 
 /* Modernize Work section cards */
 .qualification-content[id="work"] .qualification-data {
