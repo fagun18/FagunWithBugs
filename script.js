@@ -178,3 +178,84 @@ let swiperTestimonial = new Swiper(".testimonial-container", {
     },
   },
 });
+
+// Skills section sequential reveal on scroll (up/down)
+(function initSkillsSequencer() {
+  const skillsSection = document.getElementById("skills");
+  if (!skillsSection) return;
+  // Only enable sequential behavior when section has class 'sequential'
+  if (!skillsSection.classList.contains("sequential")) return;
+  const categories = Array.from(skillsSection.querySelectorAll(".skills-category"));
+  if (categories.length === 0) return;
+
+  let currentIndex = -1;
+  let lastScrollY = window.pageYOffset;
+  let ticking = false;
+
+  // Hide all initially
+  categories.forEach((c) => c.classList.remove("active"));
+
+  function showIndex(index) {
+    categories.forEach((c, i) => {
+      if (i === index) {
+        c.classList.add("active");
+      } else {
+        c.classList.remove("active");
+      }
+    });
+    currentIndex = index;
+  }
+
+  function visibleProgress() {
+    const rect = skillsSection.getBoundingClientRect();
+    const viewH = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.bottom <= 0 || rect.top >= viewH) return 0;
+    const visible = Math.min(viewH, rect.bottom) - Math.max(0, rect.top);
+    return Math.max(0, Math.min(1, visible / rect.height));
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const dirDown = window.pageYOffset >= lastScrollY;
+      lastScrollY = window.pageYOffset;
+
+      const progress = visibleProgress();
+      if (progress <= 0) {
+        ticking = false;
+        return;
+      }
+
+      // Determine next index based on direction
+      if (dirDown) {
+        const next = Math.min(categories.length - 1, currentIndex + 1);
+        if (next !== currentIndex) showIndex(next);
+      } else {
+        const prev = Math.max(0, currentIndex - 1);
+        if (prev !== currentIndex) showIndex(prev);
+      }
+
+      // If none shown yet and section entered viewport, show first
+      if (currentIndex === -1 && progress > 0) {
+        showIndex(0);
+      }
+      ticking = false;
+    });
+  }
+
+  // Kickoff when first entering viewport
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (currentIndex === -1) showIndex(0);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  io.observe(skillsSection);
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+})();

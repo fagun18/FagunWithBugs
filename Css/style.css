@@ -157,6 +157,19 @@ img {
   margin-right: var(--margin-bottom-0-1-5);
 }
 
+/* Mobile-first tweaks */
+.portfolio-img,
+.project-img {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+}
+
+.testimonial-img {
+  width: 56px;
+  height: 56px;
+}
+
 .grid {
   display: grid;
   gap: 1.5rem;
@@ -435,24 +448,66 @@ img {
 
 /* skills  */
 .skills-content {
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
 }
 
 .skills-name {
   padding: 0.8rem 1.25rem;
-  margin-bottom: 1rem;
-  margin-right: 1rem;
+  margin-bottom: 0.75rem;
+  margin-right: 0.75rem;
   font-size: var(--small-font-size);
-  background: var(--first-color-lighter);
-  border-radius: 5px;
+  background: transparent;
+  border: 1px solid var(--first-color);
+  border-radius: 6px;
   font-weight: 600;
   color: var(--title-color);
   transition: 0.3s ease;
 }
 
 .skills-name:hover {
-  background-color: var(--first-color-alt);
+  background-color: var(--first-color);
+  color: #fff;
+}
+
+/* Force black/dark text inside certain skills categories */
+.skills-category.security .skills-name,
+.skills-category.tools .skills-name,
+.skills-category.methodologies .skills-name {
+  color: #000;
+  border-color: rgba(0,0,0,0.25);
+}
+
+body.dark-theme .skills-category.security .skills-name,
+body.dark-theme .skills-category.tools .skills-name,
+body.dark-theme .skills-category.methodologies .skills-name {
+  color: #111;
+  border-color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.04);
+}
+
+/* Skills category reveal on scroll (only when sequential mode is enabled) */
+.skills.sequential .skills-category {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.skills.sequential .skills-category.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skills-category-title {
+  color: var(--first-color);
+  margin-bottom: 0.75rem;
+}
+
+body.dark-theme .skills-name {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--first-color-lighter);
+  color: var(--title-color);
 }
 
 /* qualifi  */
@@ -803,8 +858,9 @@ img {
 }
 
 .footer-bg {
-  background-color: var(--first-color-second);
+  background: linear-gradient(135deg, var(--first-color-second) 0%, rgba(91, 8, 136, 0.9) 100%);
   padding: 2rem 0 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-title {
@@ -819,22 +875,47 @@ img {
 .footer-links {
   display: flex;
   flex-direction: column;
-  row-gap: 1.5rem;
+  row-gap: 1rem;
 }
 .footer-link {
-  /* hii  */
+  color: #ffffffcc;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 .footer-link:hover {
-  color: var(--first-color-lighter);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.footer-logo {
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .footer-social {
-  font-size: 1.25rem;
-  margin-right: var(--margin-bottom-0-1-5);
+  font-size: 1.1rem;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .footer-social:hover {
-  color: var(--first-color-lighter);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .footer-copy {
@@ -849,6 +930,25 @@ img {
 .footer-link,
 .footer-social {
   color: #fff;
+}
+
+/* Improve contrast for contact details in dark mode */
+body.dark-theme .contact-title,
+body.dark-theme .contact-subtitle,
+body.dark-theme .contact-card-title,
+body.dark-theme .contact-card-data {
+  color: var(--title-color);
+}
+
+/* Also ensure link contrast inside contact section */
+body.dark-theme .contact-subtitle a,
+body.dark-theme a.contact-subtitle {
+  color: var(--title-color);
+}
+
+/* Better readability for contact links in light mode as well */
+a.contact-subtitle {
+  color: var(--title-color);
 }
 
 .scrollup {
@@ -1229,5 +1329,104 @@ img {
 
   .swiper-container-horizontal > .swiper-pagination-bullets {
     bottom: -4.5rem;
+  }
+}
+
+/* Certifications & Leadership modern UI */
+.certifications-container {
+  margin-top: 2rem;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.certifications-category {
+  background: var(--container-color);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.certifications-category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.certifications-category-title {
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-bottom: 1rem;
+}
+
+.certification-item {
+  display: grid;
+  grid-template-columns: 44px auto;
+  gap: 0.75rem 1rem;
+  align-items: start;
+  padding: 0.75rem 0.5rem;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.certification-item + .certification-item {
+  margin-top: 0.5rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  padding-top: 1rem;
+}
+
+.certification-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--first-color-lighter);
+  color: var(--first-color);
+  font-size: 1.1rem;
+}
+
+.certification-title {
+  margin: 0;
+}
+
+.certification-issuer {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: var(--smaller-font-size);
+  background: rgba(91, 8, 136, 0.08);
+  color: var(--first-color);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+body.dark-theme .certifications-category {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-theme .certification-item + .certification-item {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+body.dark-theme .certification-icon {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--first-color-lighter);
+}
+
+body.dark-theme .certification-issuer {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--title-color);
+}
+
+@media screen and (min-width: 768px) {
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 }
