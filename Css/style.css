@@ -706,6 +706,71 @@ body.dark-theme .qualification-logo { }
 
 .qualification-description { margin-top: 0.5rem; font-size: var(--small-font-size); }
 
+/* Advanced modern UI for Qualification */
+.qualification-content .qualification-data {
+  backdrop-filter: saturate(120%) blur(4px);
+  -webkit-backdrop-filter: saturate(120%) blur(4px);
+  border-radius: 14px;
+  padding: 1rem 1.25rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.qualification-content .qualification-data:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Animated timeline gradient */
+.qualification-data .qualification-line {
+  background: linear-gradient(180deg, #5B0888, #9D4EDD, #5B0888);
+  background-size: 100% 300%;
+  animation: timelineFlow 5s ease-in-out infinite;
+}
+
+@keyframes timelineFlow {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Pulsing node */
+.qualification-data .qualification-round {
+  box-shadow: 0 0 0 0 rgba(91, 8, 136, 0.35);
+  animation: pulseNode 2.2s infinite;
+}
+
+@keyframes pulseNode {
+  0% { box-shadow: 0 0 0 0 rgba(91, 8, 136, 0.35); }
+  70% { box-shadow: 0 0 0 10px rgba(91, 8, 136, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(91, 8, 136, 0); }
+}
+
+/* Chip styles for date/location row */
+.qualification-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(91, 8, 136, 0.08);
+  color: var(--first-color);
+}
+
+/* Better spacing on small devices */
+@media screen and (max-width: 480px) {
+  .qualification-content .qualification-data {
+    padding: 0.85rem 0.95rem 1.1rem;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .qualification-content .qualification-data,
+  .qualification-content .qualification-data:hover { transition: none; transform: none; box-shadow: none; }
+  .qualification-data .qualification-line { animation: none; }
+  .qualification-data .qualification-round { animation: none; }
+}
+
 /* Modernize Work section cards */
 .qualification-content[id="work"] .qualification-data {
   border-radius: 14px;
