@@ -674,6 +674,13 @@ body.dark-theme .skills-name {
   background: linear-gradient(180deg, #9D4EDD 0%, rgba(91,8,136,0.2) 100%);
 }
 
+/* Right-side company logo inside qualification card */
+.qualification-logo { display: none; }
+
+@media screen and (max-width: 568px) { }
+
+body.dark-theme .qualification-logo { }
+
 /* Animated gradient accent to the left of active tab */
 .qualification-button.qualification-active {
   position: relative;
@@ -1555,8 +1562,8 @@ a.contact-subtitle {
   object-fit: contain;
 }
 
-.company-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
-.company-logo { width: 28px; height: 28px; object-fit: contain; border-radius: 4px; }
+.company-meta { display: inline; }
+.company-logo { display: none; }
 
 .certification-title {
   margin: 0;
