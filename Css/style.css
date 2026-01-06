@@ -72,7 +72,7 @@ html {
 }
 
 body {
-  margin: 0 0 var(--header-height) 0;
+  margin: 0 0 calc(var(--header-height) + 2.5rem) 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
@@ -362,9 +362,14 @@ body:not(.dark-theme) .home-title {
   text-align: center;
 }
 
+.about-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 /* Skills Section - Redesigned to Cards */
 .skills-container {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
 .skills-content {
@@ -493,7 +498,7 @@ body:not(.dark-theme) .home-title {
 /* Services */
 .services-container {
   gap: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
 .services-content {
@@ -908,7 +913,7 @@ body:not(.dark-theme) .home-title {
   }
 
   .about-buttons {
-    justify-content: initial;
+    justify-content: flex-start;
   }
 
   .qualification-tabs {
