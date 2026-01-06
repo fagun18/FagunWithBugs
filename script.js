@@ -1,30 +1,45 @@
+/*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.getElementById("nav-menu"),
   navToggle = document.getElementById("nav-toggle"),
   navClose = document.getElementById("nav-close");
 
+/*===== MENU SHOW =====*/
+/* Validate if constant exists */
 if (navToggle) {
   navToggle.addEventListener("click", () => {
     navMenu.classList.add("show-menu");
   });
 }
 
+/*===== MENU HIDDEN =====*/
+/* Validate if constant exists */
 if (navClose) {
   navClose.addEventListener("click", () => {
     navMenu.classList.remove("show-menu");
   });
 }
 
-// remove menu mobile
+/*==================== REMOVE MENU MOBILE ====================*/
 const navLink = document.querySelectorAll(".nav-link");
 
 function linkAction() {
   const navMenu = document.getElementById("nav-menu");
+  // When we click on each nav__link, we remove the show-menu class
   navMenu.classList.remove("show-menu");
 }
-
 navLink.forEach((n) => n.addEventListener("click", linkAction));
 
-// qualifi
+/*==================== ANIMATION ON SCROLL INITIALIZATION ====================*/
+window.addEventListener('load', () => {
+    AOS.init({
+        duration: 1000,
+        offset: 100,
+        once: true,
+        mirror: false
+    });
+});
+
+/*==================== QUALIFICATION TABS ====================*/
 const tabs = document.querySelectorAll("[data-target]"),
   tabContents = document.querySelectorAll("[data-content]");
 
@@ -40,68 +55,20 @@ tabs.forEach((tab) => {
     tabs.forEach((tab) => {
       tab.classList.remove("qualification-active");
     });
-
     tab.classList.add("qualification-active");
   });
 });
 
-// services box
-const boxViews = document.querySelectorAll(".services-box"),
-  boxBtns = document.querySelectorAll(".services-button"),
-  boxCloses = document.querySelectorAll(".services-box-close");
-
-let box = function (boxClick) {
-  boxViews[boxClick].classList.add("active-box");
-};
-
-boxBtns.forEach((boxBtn, i) => {
-  boxBtn.addEventListener("click", () => {
-    box(i);
-  });
-});
-
-boxCloses.forEach((boxClose) => {
-  boxClose.addEventListener("click", () => {
-    boxViews.forEach((boxView) => {
-      boxView.classList.remove("active-box");
-    });
-  });
-});
-
-//scroll section active link
-const sections = document.querySelectorAll("section[id]");
-
-function scrollActive() {
-  const scrollY = window.pageYOffset;
-
-  sections.forEach((current) => {
-    const sectionHeight = current.offsetHeight;
-    const sectionTop = current.offsetTop - 50;
-    sectionId = current.getAttribute("id");
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document
-        .querySelector(".nav-menu a[href*=" + sectionId + "]")
-        .classList.add("active-link");
-    } else {
-      document
-        .querySelector(".nav-menu a[href*=" + sectionId + "]")
-        .classList.remove("active-link");
-    }
-  });
-}
-window.addEventListener("scroll", scrollActive);
-
-// change bg header
+/*==================== CHANGE BACKGROUND HEADER ====================*/
 function scrollHeader() {
   const nav = document.getElementById("header");
-  // When the scroll is greater than 200 viewport height, add the scroll-header class to the header tag
-  if (this.scrollY >= 200) nav.classList.add("scroll-header");
+  // When the scroll is greater than 80 viewport height, add the scroll-header class to the header tag
+  if (this.scrollY >= 80) nav.classList.add("scroll-header");
   else nav.classList.remove("scroll-header");
 }
 window.addEventListener("scroll", scrollHeader);
 
-/*==================== SHOW SCROLL TOP ====================*/
+/*==================== SHOW SCROLL UP ====================*/
 function scrollUp() {
   const scrollUp = document.getElementById("scroll-up");
   // When the scroll is higher than 560 viewport height, add the show-scroll class to the a tag with the scroll-top class
@@ -110,7 +77,7 @@ function scrollUp() {
 }
 window.addEventListener("scroll", scrollUp);
 
-//dark light mode------------------
+/*==================== DARK LIGHT THEME ====================*/
 const themeButton = document.getElementById("theme-button");
 const darkTheme = "dark-theme";
 const iconTheme = "fa-sun";
@@ -146,141 +113,16 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("selected-icon", getCurrentIcon());
 });
 
-//swiper
+/*==================== SWIPER PORTFOLIO ====================*/
 let swiperPortfolio = new Swiper(".portfolio-container", {
   cssMode: true,
   loop: true,
-
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
-
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
   },
 });
-
-let swiperTestimonial = new Swiper(".testimonial-container", {
-  cssMode: true,
-  loop: true,
-  spaceBetween: 48,
-
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-
-  breakpoints: {
-    568: {
-      slidesPerView: 2,
-    },
-  },
-});
-
-// Skills section sequential reveal on scroll (up/down)
-(function initSkillsSequencer() {
-  const skillsSection = document.getElementById("skills");
-  if (!skillsSection) return;
-  // Only enable sequential behavior when section has class 'sequential'
-  if (!skillsSection.classList.contains("sequential")) return;
-  const categories = Array.from(skillsSection.querySelectorAll(".skills-category"));
-  if (categories.length === 0) return;
-
-  let currentIndex = -1;
-  let lastScrollY = window.pageYOffset;
-  let ticking = false;
-
-  // Hide all initially
-  categories.forEach((c) => c.classList.remove("active"));
-
-  function showIndex(index) {
-    categories.forEach((c, i) => {
-      if (i === index) {
-        c.classList.add("active");
-      } else {
-        c.classList.remove("active");
-      }
-    });
-    currentIndex = index;
-  }
-
-  function visibleProgress() {
-    const rect = skillsSection.getBoundingClientRect();
-    const viewH = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.bottom <= 0 || rect.top >= viewH) return 0;
-    const visible = Math.min(viewH, rect.bottom) - Math.max(0, rect.top);
-    return Math.max(0, Math.min(1, visible / rect.height));
-  }
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const dirDown = window.pageYOffset >= lastScrollY;
-      lastScrollY = window.pageYOffset;
-
-      const progress = visibleProgress();
-      if (progress <= 0) {
-        ticking = false;
-        return;
-      }
-
-      // Determine next index based on direction
-      if (dirDown) {
-        const next = Math.min(categories.length - 1, currentIndex + 1);
-        if (next !== currentIndex) showIndex(next);
-      } else {
-        const prev = Math.max(0, currentIndex - 1);
-        if (prev !== currentIndex) showIndex(prev);
-      }
-
-      // If none shown yet and section entered viewport, show first
-      if (currentIndex === -1 && progress > 0) {
-        showIndex(0);
-      }
-      ticking = false;
-    });
-  }
-
-  // Kickoff when first entering viewport
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (currentIndex === -1) showIndex(0);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-  io.observe(skillsSection);
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-})();
-
-// Qualification: animate cards on reveal
-(function initQualificationReveal() {
-  const container = document.querySelector('.qualification-section');
-  if (!container) return;
-  const cards = Array.from(container.querySelectorAll('.qualification-data'));
-  if (cards.length === 0) return;
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-        entry.target.style.transform = 'translateY(0)';
-        entry.target.style.opacity = '1';
-      }
-    });
-  }, { threshold: 0.15 });
-
-  cards.forEach((c, idx) => {
-    c.style.transform = 'translateY(18px)';
-    c.style.opacity = '0';
-    c.style.willChange = 'transform, opacity';
-    setTimeout(() => io.observe(c), idx * 90);
-  });
-})();
