@@ -31,12 +31,12 @@ navLink.forEach((n) => n.addEventListener("click", linkAction));
 
 /*==================== ANIMATION ON SCROLL INITIALIZATION ====================*/
 window.addEventListener('load', () => {
-    AOS.init({
-        duration: 1000,
-        offset: 100,
-        once: true,
-        mirror: false
-    });
+  AOS.init({
+    duration: 1000,
+    offset: 100,
+    once: true,
+    mirror: false
+  });
 });
 
 /*==================== QUALIFICATION TABS ====================*/
@@ -115,7 +115,9 @@ themeButton.addEventListener("click", () => {
 
 /*==================== SWIPER PORTFOLIO ====================*/
 let swiperPortfolio = new Swiper(".portfolio-container", {
-  cssMode: true,
+  cssMode: false,
+  grabCursor: true,
+  spaceBetween: 40,
   loop: true,
   navigation: {
     nextEl: ".swiper-button-next",
@@ -124,5 +126,6 @@ let swiperPortfolio = new Swiper(".portfolio-container", {
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
+    dynamicBullets: true,
   },
 });
