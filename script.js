@@ -119,6 +119,10 @@ let swiperPortfolio = new Swiper(".portfolio-container", {
   grabCursor: true,
   spaceBetween: 40,
   loop: true,
+  autoplay: {
+    delay: 3500,
+    disableOnInteraction: false,
+  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
